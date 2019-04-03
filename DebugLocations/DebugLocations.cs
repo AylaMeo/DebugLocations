@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using static CitizenFX.Core.Native.API;
@@ -14,6 +15,23 @@ namespace DebugLocations
         {
             API.RegisterCommand("loc", new Action<int, List<object>, string>((source, arguments, raw) => { GetLocation(); }), false);
             API.RegisterCommand("WriteLocations", new Action<int, List<object>, string>((source, arguments, raw) => { WriteLocations(); }), false);
+            API.RegisterCommand("ClearLocations", new Action<int, List<object>, string>((source, arguments, raw) => { CLearLocations(); }), false);
+            API.RegisterCommand("RemoveLastLoc", new Action<int, List<object>, string>((source, arguments, raw) => { Removelast(); }), false);
+        }
+        
+        private async void CLearLocations()
+        {
+            await Delay(0);
+            LocationsNew.Clear();
+        }
+        
+        private async void Removelast()
+        {
+            await Delay(0);
+            if(LocationsNew.Any()) //prevent IndexOutOfRangeException for empty list
+            {
+                LocationsNew.RemoveAt(LocationsNew.Count - 1);
+            }
         }
         
         private async void GetLocation()
