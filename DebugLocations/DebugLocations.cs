@@ -35,7 +35,7 @@ namespace DebugLocations
             Debug.Write($"\n[DebugLocations]:::[Start]\n");
             foreach (object o in LocationsNew)
             {
-                Debug.Write($"[DebugLocations]:{o}");
+                Debug.Write($"\n[DebugLocations]:{o}");
             }
             Debug.Write($"\n[DebugLocations]:::[End]\n");
         }
